@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CPK / CVB Presentation</title>
+
+		<meta name="description" content="Community Plugin Kickstarter / Community VFS Browser">
+		<meta name="author" content="Gonçalo Neto">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+		<link rel="stylesheet" href="reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal/css/theme/simple.css" id="theme">
+
+		<!-- Custom overrides -->
+		<link rel="stylesheet" href="css/demo.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="reveal/css/print/' + ( true || window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>CPK<small><small>*</small></small></h1>
+					<h3>Easy Plugin Development for Pentaho</h3>
+					<small>*Community Plugin Kickstarter</small>
+				</section>
+
+				<section>
+					<h2>Motivation</h2>
+					<blockquote>
+						<a href='http://www.pentaho.com'>Pentaho</a> is very well known for being a very good Business Analytics software, but is in fact much more than that; Pentaho is a great platform to build on top of.
+					</blockquote>
+					<br>
+					<p>
+						<small>(Totally stolen from <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">Kaapa's</a> blog)</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Goal</h2>
+					<blockquote>
+						The goal of CPK is to provide a simple and easy way to develop pentaho plugins that behave like packaged applications, simplifying its structure. 
+					</blockquote>
+					<br>
+					<p>
+						<small>(Aaaand <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">again</a> :P )</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Plugin structure</h2>
+					<div class='structure-block'>
+						<p>UI</p>
+						<p><small>CDE<small>*</small> for dashboards/pages</small></p>
+						<p><small>Basic sitemap</small></p>
+						<p><small>Default CPK Template</small></p>
+					</div>
+					<div class='structure-block'>
+						<p>Server-side</p>
+						<p><small>Kettle Transformations/Jobs</small></p>
+						<p><small>Java Classes</small></p>
+						<p><small>(Server Side Javascript)</small></p>
+					</div>
+					<br>
+					<small><small>*</small> overall it depends on <a href='http://www.pentaho.com'>Pentaho</a>, <a href='https://github.com/webdetails/cdf'>CDF</a>, <a href='https://github.com/webdetails/cde'>CDE</a>, <a href='https://github.com/webdetails/cda'>CDA</a> and <a href='https://github.com/webdetails/cpf'>CPF</a>.</small>
+				</section>
+
+				<section>
+					<h3>Is it mandatory to have strong knowledge of Java?</h3>
+					<div class='fragment'>
+						<br>
+						<h2>Not at all!</h2>
+						<br>
+						<p>The idea is to use <a href='http://kettle.pentaho.com/'>Kettle</a> to implement server side logic.</p>
+				</section>
+
+				<section>
+					<h2>File structure</h2>
+					<p>The proposed stub is subject to updates but already close to a stable version.</p>
+					<div class="file-system-container">
+						<pre class="file-system">
+CPK_Plugin
+|-- dashboards
+|-- endpoints
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml
+						</pre>
+				</div>
+				</section>
+
+				<section>
+					<h2>Accessing Endpoints and Dashboards</h2>
+					<p>Endpoints are listed from the <i>/endpoints</i> folder. Dashboards from the <i>/dashboards</i> folder.</p>
+					<p>They can be accessed using:</p>
+					<p><a href='javascript;'>/pentaho/content/pluginName/endpointName</a></p>
+				</section>
+
+				<section>
+					<h3>Passing parameters to Kettle</h3>
+					<br>
+					<div class='structure-block'>
+						<p>Endpoint:</p> 
+						<code>paramcustomParam</code>
+					</div>
+					<div class='structure-block'>
+						<p>Kettle:</p>
+						<code>${customParam}</code>
+					</div><small>*</small>
+					<br>
+					<br>
+					<p><a href='javascript;'>.../pluginName/endpointName?paramcustomParam=true</a></p>
+					<p><small>* Same mapping as CDA</small></p>
+				</section>
+
+				<section>
+					<h2>Kettle Output</h2>
+						<img width="600px" height="200px" src="img/output.png" alt="Up arrow" >
+				</section>
+
+				<section>
+					<h1>CVB<small><small>*</small></small></h1>
+					<h3>A Test Case for CPK</h3>
+					<small>*Community VFS Browser</small>
+				</section>
+
+				<section>
+					<h2>Development driven by User Needs</h2>
+					<h3><a href='https://metrics.mozilla.com/data/content/pentaho-cdf-dd/Render?solution=metrics2&path=%2Ftelemetry&file=SignIn.wcdf'>Mozilla Metrics</a></h3>
+					<p>Develop a plugin to browse a Virtual File System and download Files. The target case is <a href='http://hadoop.apache.org/'>Hadoop</a> File System.</p>
+				</section>
+
+				<section>
+						<h2>Start with an empty plugin</h2>
+						<p> with a stub structure</p>
+						<br>
+						<div class="file-system-container">
+							<pre class="file-system">
+CVB
+|-- dashboards
+    `-- initialTest.*
+|-- endpoints
+    |-- kettle
+        `-- sampleTrans.ktr
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml
+							</pre>
+						</div>
+					</section>
+
+					<section>
+						<h3>Status</h3>
+						<p><a href='/pentaho/content/cvb/status'>/pentaho/content/cvb/status</a></p>
+						<br>
+						<h3>Refresh</h3>
+						<p><a href='/pentaho/content/cvb/refresh'>/pentaho/content/cvb/refresh</a></p>
+					</section>
+
+					<section>
+						<h3>Endpoints</h3>
+						<ul>
+							<li><code>initialtest</code> (dash): <a href='/pentaho/content/cvb/initialtest'>/pentaho/content/cvb/initialtest</a></li>
+							<li><code>sampletrans</code> (trans): <a href='/pentaho/content/cvb/sampletrans'>/pentaho/content/cvb/sampletrans</a></li>
+						</ul>
+					</section>
+
+				<section>
+					<h2>Remove Sample Endpoints</h2>
+					<div class="file-system-container">	
+						<pre class="file-system">
+CVB
+|-- dashboards</pre><pre class="fragment fade-out highlight-red file-system" data-fragment-index="0">
+    `-- initialTest.*</pre><pre class="file-system">
+|-- endpoints
+    |-- kettle</pre><pre class="fragment fade-out highlight-red file-system" data-fragment-index="0">
+        `-- sampleTrans.ktr</pre><pre class="file-system">
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml
+						</pre>
+					</div>
+				</section>
+
+<!--
+				<section>
+					<h2>#1</h2>
+					<img width="178" height="238" src="img/shell.jpg" alt="Up arrow" style="-webkit-transform: rotate(90deg);">
+				</section>
+
+				<section>
+					<h3>Status</h3>
+					<p><a href='/pentaho/content/cvb/status'>/pentaho/content/cvb/status</a></p>
+					<br>
+					<h3>Refresh</h3>
+					<p><a href='/pentaho/content/cvb/refresh'>/pentaho/content/cvb/refresh</a></p>
+				</section>
+-->
+
+				<section>
+					<h2>Add file list</h2>
+					<p>Drop the filelist dashboard in the <i>/dashboards</i> folder and the kettle transformations in <i>/endpoints/kettle</i>.<p>
+					<div class="file-system-container">
+						<pre class="file-system">
+CVB
+|-- dashboards</pre><pre class="fragment fade-in highlight-green file-system" data-fragment-index="0">
+    `-- fileList.*</pre><pre class="file-system">
+|-- endpoints
+    |-- kettle</pre><pre class="fragment fade-in highlight-green file-system" data-fragment-index="0">
+        `-- listFiles.ktr</pre><pre class="file-system">
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>#1</h2>
+					<img width="178" height="238" src="img/shell.jpg" alt="Up arrow" style="-webkit-transform: rotate(90deg);">
+					<h3>Refresh</h3>
+					<p><a href='/pentaho/content/cvb/refresh'>/pentaho/content/cvb/refresh</a></p>
+				</section>
+
+				<section>
+					<h3>Endpoints</h3>
+					<ul>
+						<li><code>listfiles</code> (trans): <a href='/pentaho/content/cvb/listFiles?paramURI=file://'>
+							/pentaho/content/cvb/listfiles?paramURI=file://
+						</a></li>
+						<li><code>filelist</code> (dash): <a href='/pentaho/content/cvb/filelist'>
+							/pentaho/content/cvb/filelist
+						</a></li>
+						<li><code>_others</code> (trans)</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>What about all the others with the underscore at the start?</p>
+					<br>
+					<div class='fragment fade-in'>
+						<h3>Work in Progress</h3>
+						<p> Filter out sub transformations that are not meant to be used as endpoints.</p>
+						</div>
+				</section>
+
+				<section>
+					<h2>Template / Sitemap</h2>
+					<p>Sitemap is a part of the default CPK template. CPK provides an additional method to automatically fetch the dashboard list used by plugin UI.</p>
+					<br>
+					<p><a href='/pentaho/content/cvb/getSitemapJson'>/pentaho/content/cvb/getSitemapJson</a></p>
+				</section>
+
+				<section>
+					<h3>Change dashboard template <small><small>(Edit Mode)</small></small></h3>
+					<p><a href='/pentaho/content/cvb/filelist?mode=edit'>/pentaho/content/cvb/filelist?mode=edit</a></p>
+					<br>
+					<div class='fragment fade-in'>
+						<h3>Try again!</h3>
+						<p><a href='/pentaho/content/cvb/filelist'>/pentaho/content/cvb/filelist</a></p>
+					</div>
+				</section>
+
+				<section>
+					<h2>Add other endpoints</h2>
+					<p><code>getLocations</code>: fetch the VFS locations from XML.<p>
+					<p><code>downloadFile</code>: download files using CVB.</p>
+					<div class="file-system-container">
+						<pre class="file-system">
+CVB
+|-- dashboards
+    `-- fileList.*
+|-- endpoints
+    |-- kettle
+        `-- listFiles.ktr</pre><pre class="fragment fade-in highlight-green file-system" data-fragment-index="0">
+        `-- getLocations.ktr
+        `-- downloadFile.kjb</pre><pre class="file-system">
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml</pre><pre class="fragment fade-in highlight-green file-system" data-fragment-index="0">
+`-- cvb.xml</pre><pre class="file-system">
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>#2</h2>
+					<img width="178" height="238" src="img/shell.jpg" alt="Up arrow" style="-webkit-transform: rotate(90deg);">
+					<h3>Refresh</h3>
+					<p><a href='/pentaho/content/cvb/refresh'>/pentaho/content/cvb/refresh</a></p>
+				</section>
+
+				<section>
+					<h3>Activate Location Selector <small><small>(Edit Mode)</small></small></h3>
+					<p><a href='/pentaho/content/cvb/filelist?mode=edit'>/pentaho/content/cvb/filelist?mode=edit</a></p>
+					<br>
+					<div class='fragment fade-in'>
+						<h3>See it working!</h3>
+						<p><a href='/pentaho/content/cvb/filelist'>/pentaho/content/cvb/filelist</a></p>
+					</div>
+				</section>
+
+				<section>
+					<h2>Add settings dashboard</h2>
+					<div class="file-system-container">	
+						<pre class="file-system">
+CVB
+|-- dashboards</pre><pre class="fragment fade-in highlight-green file-system" data-fragment-index="0">
+    |-- admin
+        `--settings.*</pre><pre class="file-system">
+    `-- fileList.*
+|-- endpoints
+    |-- kettle
+        `-- listFiles.ktr
+        `-- getLocations.ktr
+        `-- downloadFile.kjb
+|-- static
+|-- resources
+|-- lib
+`-- plugin.xml
+`-- settings.xml
+`-- cvb.xml
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>#3</h2>
+					<img width="178" height="238" src="img/shell.jpg" alt="Up arrow" style="-webkit-transform: rotate(90deg);">
+					<h3>Refresh</h3>
+					<p><a href='/pentaho/content/cvb/refresh'>/pentaho/content/cvb/refresh</a></p>
+				</section>
+
+				<section>
+					<h2>Access Control<small><small>*</small></small></h2>
+					<br>
+						<p>Control top level locations.</p>
+						<p>Apply regular expressions to each of the locations.</p>
+					<pre><code class='xml'>
+&lt;vfsLocation name="Home" topLevel="file://"&gt;
+  &lt;access type="allow"&gt;.*Users/gundisalwa.*&lt;/access&gt;
+  &lt;access type="deny"&gt;.*Users.*&lt;/access&gt;
+  &lt;access type="allow"&gt;.*&lt;/access&gt;
+&lt;/vfsLocation&gt;
+					</code></pre>					
+					<p><a href='/pentaho/content/cvb/settings'>/pentaho/content/cvb/settings</a></p>
+				</section>
+
+				<section>
+					<h2>Pause for tea?</h2>
+					<img width="357" height="267" src="img/kettle.jpg" alt="Up arrow" />
+				</section>
+
+				<section>
+					<h1>Back to CPK<small><small>*</small></small></h1>
+					<h3>Other Features and Roadmap</h3>
+				</section>
+
+				<section>
+					<h2>Access Control<small><small>*</small></small></h2>
+					<p>Non admin users can not access dashboards, or endpoints, inside the <i>/admin</i> folder, and the sitemap does not show them.</p>
+					<p><small><small>*</small>(Based on Pentaho roles)</small></p>
+				</section>
+
+				<section>
+						<h3>Not admin</h3>
+						<p><a href='javascript:;' class='settings-test not-admin'>
+							cvb/filelist?userid=pat&password=password
+						</a></p>
+						<br>
+						<h3>Admin</h3>
+						<p><a href='javascript:;' class='settings-test admin'>
+							cvb/filelist?userid=joe&password=password
+						</a></p>
+				</section>
+
+				<section>
+					<h2>Download Zip<small><small>*</small></small></h2>
+					<p>Although CVB does not expose that at the moment, folders can be downloaded in a .zip file.</p>
+					<p>CPK triggers zip when the kettle result is more than one file.</p>
+					<br>
+					<p><a href='/pentaho/content/cvb/downloadFile?download=true&paramURI=file:///Users/gundisalwa/Downloads/logos'>
+						Test download
+						</a></p>
+				</section>
+
+				<section>
+					<h2>Next Steps: Control Panel</h2>
+					<br>
+					<div>
+						<h4>Administrative Features</h4>
+						<p>
+							<ul >
+								<li>List existing plugins</li>
+								<li>Detect if the plugins are up to date with the latest version of CPK</li>
+								<li>Allow the creation of new plugins</li>
+								<li>Allow to change plugin metadata</li>
+								<li>List and register new endpoints (UI and code)</li>
+							</ul>
+						</p>
+					</div>
+					<p>
+						<small>(Same <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">deal</a> )</small>
+					</p>
+				</section>
+				<section>
+					<h2>Next Steps: Control Panel</h2>
+					<br>
+					<div >
+						<h4>Other goals</h4>
+						<p>
+						<ul >
+							<li>Import UI from existing dashboards in solution</li>	
+							<li>Allow editing dashboards from this UI</li>
+							<li>Submit marketplace metadata to <em>Pentaho</em></li>
+							<li>Generate distribution zip package</li>
+						</ul>
+					</div>
+					<p>
+						<small>(Same <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">deal</a> )</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>How to build it?</h2>
+					<br>
+					<img class='fragment fade-in' width="377" height="267" src="img/oroboros.jpg" alt="Up arrow" />
+					<br>
+					<br>
+					<h1 class='fragment fade-in'>Using CPK!</h1>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="reveal/lib/js/head.min.js"></script>
+		<script src="reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				/*
+				margin:0,
+				minScale:0.9,
+				maxScale:1.0,
+				width: 1200,
+				height: 800,
+				*/
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'reveal/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'reveal/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+	  <script src='/pentaho/content/pentaho-cdf-dd/res/cpkDemo/lib/jquery-1.9.1.min.js'> </script>
+
+		<script>
+				Reveal.addEventListener( 'ready', function( event ) {
+   				$('.settings-test').each( function(idx,el){
+						$(el).click(function(){
+							$.ajax({
+								url:'/pentaho/Logout',
+								success:function(){
+									window.location = ( $(el).hasClass('admin') ) ?
+									'/pentaho/content/cvb/filelist?userid=joe&password=password' :
+									'/pentaho/content/cvb/filelist?userid=pat&password=password' ;
+								}
+							});
+						});
+					});
+				} );
+		</script>
+
+
+
+	</body>
+</html>
