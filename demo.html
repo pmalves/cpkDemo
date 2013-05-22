@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>CPK / CVB Presentation</title>
+		<title>Apresentação CPK / CVB </title>
 
 		<meta name="description" content="Community Plugin Kickstarter / Community VFS Browser">
-		<meta name="author" content="Gonçalo Neto">
+		<meta name="author" content="Gonçalo Neto / Pedro Alves">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -43,62 +43,64 @@
 
 				<section>
 					<h1>CPK<small><small>*</small></small></h1>
-					<h3>Easy Plugin Development for Pentaho</h3>
+					<h3>Desenvolvimento de plugins Pentaho simplificado</h3>
 					<small>*Community Plugin Kickstarter</small>
 				</section>
 
 				<section>
-					<h2>Motivation</h2>
+					<h2>Motivação</h2>
 					<blockquote>
-						<a href='http://www.pentaho.com'>Pentaho</a> is very well known for being a very good Business Analytics software, but is in fact much more than that; Pentaho is a great platform to build on top of.
+						<a href='http://www.pentaho.com'>Pentaho</a> 
+						é conhecido por ser uma excelente ferramente de Business Analytics,
+						mas na realidade é muito mais que isso; Pentaho é uma excelente
+						plataforma para a criação de conteúdo
 					</blockquote>
 					<br>
 					<p>
-						<small>(Totally stolen from <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">Kaapa's</a> blog)</small>
+						<small>(Roubado do blog do <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">Kaapa's</a>)</small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Goal</h2>
+					<h2>Objectivo</h2>
 					<blockquote>
-						The goal of CPK is to provide a simple and easy way to develop pentaho plugins that behave like packaged applications, simplifying its structure. 
+						O objectivo do CPK é permitir a criação de plugins de forma símples
+						que possam eventualmente ser transformados em aplicações
 					</blockquote>
 					<br>
 					<p>
-						<small>(Aaaand <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">again</a> :P )</small>
+						<small>(Mais uma vez <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">roubado do blog</a> :P )</small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Plugin structure</h2>
+					<h2>Estrutura do Plugin</h2>
 					<div class='structure-block'>
 						<p>UI</p>
-						<p><small>CDE<small>*</small> for dashboards/pages</small></p>
-						<p><small>Basic sitemap</small></p>
-						<p><small>Default CPK Template</small></p>
+						<p><small>CDE<small>*</small> para dashboards / UI</small></p>
+						<p><small>Sistema de navegação símples</small></p>
+						<p><small>Template CPK</small></p>
 					</div>
 					<div class='structure-block'>
-						<p>Server-side</p>
-						<p><small>Kettle Transformations/Jobs</small></p>
-						<p><small>Java Classes</small></p>
-						<p><small>(Server Side Javascript)</small></p>
+						<p>Servidor</p>
+						<p><small>Transformações e Jobs Kettle</small></p>
 					</div>
 					<br>
-					<small><small>*</small> overall it depends on <a href='http://www.pentaho.com'>Pentaho</a>, <a href='https://github.com/webdetails/cdf'>CDF</a>, <a href='https://github.com/webdetails/cde'>CDE</a>, <a href='https://github.com/webdetails/cda'>CDA</a> and <a href='https://github.com/webdetails/cpf'>CPF</a>.</small>
+					<small><small>*</small>Como dependências temos o <a href='http://www.pentaho.com'>Pentaho</a>, <a href='https://github.com/webdetails/cdf'>CDF</a>, <a href='https://github.com/webdetails/cde'>CDE</a>, <a href='https://github.com/webdetails/cda'>CDA</a> e <a href='https://github.com/webdetails/cpf'>CPF</a>.</small>
 				</section>
 
 				<section>
-					<h3>Is it mandatory to have strong knowledge of Java?</h3>
+					<h3>É necessário saber Java?</h3>
 					<div class='fragment'>
 						<br>
-						<h2>Not at all!</h2>
+						<h2>Não!</h2>
 						<br>
-						<p>The idea is to use <a href='http://kettle.pentaho.com/'>Kettle</a> to implement server side logic.</p>
+						<p>A ideia é usar o <a href='http://kettle.pentaho.com/'>Kettle</a> para implementar toda a lógica de servidor.</p>
 				</section>
 
 				<section>
-					<h2>File structure</h2>
-					<p>The proposed stub is subject to updates but already close to a stable version.</p>
+					<h2>Estrutura de ficheiros</h2>
+					<p>Esta proposta já se aproxima do resultado final</p>
 					<div class="file-system-container">
 						<pre class="file-system">
 CPK_Plugin
@@ -114,14 +116,14 @@ CPK_Plugin
 				</section>
 
 				<section>
-					<h2>Accessing Endpoints and Dashboards</h2>
-					<p>Endpoints are listed from the <i>/endpoints</i> folder. Dashboards from the <i>/dashboards</i> folder.</p>
-					<p>They can be accessed using:</p>
+					<h2>Acessando Endpoints e Dashboards</h2>
+					<p>Endpoints são listados da diretoria <i>/endpoints</i> e Dashboards da diretoria <i>/dashboards</i></p>
+					<p>São acessados por:</p>
 					<p><a href='javascript;'>/pentaho/content/pluginName/endpointName</a></p>
 				</section>
 
 				<section>
-					<h3>Passing parameters to Kettle</h3>
+					<h3>Passar parâmetros para o Kettle</h3>
 					<br>
 					<div class='structure-block'>
 						<p>Endpoint:</p> 
@@ -134,7 +136,7 @@ CPK_Plugin
 					<br>
 					<br>
 					<p><a href='javascript;'>.../pluginName/endpointName?paramcustomParam=true</a></p>
-					<p><small>* Same mapping as CDA</small></p>
+					<p><small>* igual ao CDA</small></p>
 				</section>
 
 				<section>
@@ -144,19 +146,19 @@ CPK_Plugin
 
 				<section>
 					<h1>CVB<small><small>*</small></small></h1>
-					<h3>A Test Case for CPK</h3>
+					<h3>Exemplo de plugin CPK</h3>
 					<small>*Community VFS Browser</small>
 				</section>
 
 				<section>
-					<h2>Development driven by User Needs</h2>
+					<h2>Desenvolvimento através de necessidades de negócio</h2>
 					<h3><a href='https://metrics.mozilla.com/data/content/pentaho-cdf-dd/Render?solution=metrics2&path=%2Ftelemetry&file=SignIn.wcdf'>Mozilla Metrics</a></h3>
-					<p>Develop a plugin to browse a Virtual File System and download Files. The target case is <a href='http://hadoop.apache.org/'>Hadoop</a> File System.</p>
+					<p>Desenvolver um plugin para acessar o Virtual File System. O objectivo é conetar ao <a href='http://hadoop.apache.org/'>Hadoop</a> File System.</p>
 				</section>
 
 				<section>
-						<h2>Start with an empty plugin</h2>
-						<p> with a stub structure</p>
+						<h2>Começar com um plugin inicial</h2>
+						<p> Com a estrutura básica</p>
 						<br>
 						<div class="file-system-container">
 							<pre class="file-system">
@@ -192,7 +194,7 @@ CVB
 					</section>
 
 				<section>
-					<h2>Remove Sample Endpoints</h2>
+					<h2>Remover Endpoints</h2>
 					<div class="file-system-container">	
 						<pre class="file-system">
 CVB
@@ -226,8 +228,8 @@ CVB
 -->
 
 				<section>
-					<h2>Add file list</h2>
-					<p>Drop the filelist dashboard in the <i>/dashboards</i> folder and the kettle transformations in <i>/endpoints/kettle</i>.<p>
+					<h2>Adicionar Ficheiros</h2>
+					<p>Colocar a dashboard filelist no diretório <i>/dashboards</i> e as transformaçoes kettle em <i>/endpoints/kettle</i>.<p>
 					<div class="file-system-container">
 						<pre class="file-system">
 CVB
@@ -266,23 +268,14 @@ CVB
 				</section>
 
 				<section>
-					<p>What about all the others with the underscore at the start?</p>
-					<br>
-					<div class='fragment fade-in'>
-						<h3>Work in Progress</h3>
-						<p> Filter out sub transformations that are not meant to be used as endpoints.</p>
-						</div>
-				</section>
-
-				<section>
 					<h2>Template / Sitemap</h2>
-					<p>Sitemap is a part of the default CPK template. CPK provides an additional method to automatically fetch the dashboard list used by plugin UI.</p>
+					<p>O CPK vem com um template próprio que lista todas as dashboards automaticamente no UI do plugin</p>
 					<br>
 					<p><a href='/pentaho/content/cvb/getSitemapJson'>/pentaho/content/cvb/getSitemapJson</a></p>
 				</section>
 
 				<section>
-					<h3>Change dashboard template <small><small>(Edit Mode)</small></small></h3>
+					<h3>Alterar os templates <small><small>(Edit Mode)</small></small></h3>
 					<p><a href='/pentaho/content/cvb/filelist?mode=edit'>/pentaho/content/cvb/filelist?mode=edit</a></p>
 					<br>
 					<div class='fragment fade-in'>
@@ -292,9 +285,9 @@ CVB
 				</section>
 
 				<section>
-					<h2>Add other endpoints</h2>
-					<p><code>getLocations</code>: fetch the VFS locations from XML.<p>
-					<p><code>downloadFile</code>: download files using CVB.</p>
+					<h2>Adicionar mais endpoints</h2>
+					<p><code>getLocations</code>: Tirar as localizações por VFS locations por XML<p>
+					<p><code>downloadFile</code>: download de ficheiros por CVB.</p>
 					<div class="file-system-container">
 						<pre class="file-system">
 CVB
@@ -323,17 +316,17 @@ CVB
 				</section>
 
 				<section>
-					<h3>Activate Location Selector <small><small>(Edit Mode)</small></small></h3>
+					<h3>Activar Selector Localização <small><small>(Edit Mode)</small></small></h3>
 					<p><a href='/pentaho/content/cvb/filelist?mode=edit'>/pentaho/content/cvb/filelist?mode=edit</a></p>
 					<br>
 					<div class='fragment fade-in'>
-						<h3>See it working!</h3>
+						<h3>Ver a funcionar</h3>
 						<p><a href='/pentaho/content/cvb/filelist'>/pentaho/content/cvb/filelist</a></p>
 					</div>
 				</section>
 
 				<section>
-					<h2>Add settings dashboard</h2>
+					<h2>Adicionar settings</h2>
 					<div class="file-system-container">	
 						<pre class="file-system">
 CVB
@@ -364,10 +357,10 @@ CVB
 				</section>
 
 				<section>
-					<h2>Access Control<small><small>*</small></small></h2>
+					<h2>Controlo de acessos<small><small>*</small></small></h2>
 					<br>
-						<p>Control top level locations.</p>
-						<p>Apply regular expressions to each of the locations.</p>
+						<p>Controlas o acesso topo.</p>
+						<p>Aplicar expressões regulares.</p>
 					<pre><code class='xml'>
 &lt;vfsLocation name="Home" topLevel="file://"&gt;
   &lt;access type="allow"&gt;.*Users/gundisalwa.*&lt;/access&gt;
@@ -378,7 +371,7 @@ CVB
 					<p><a href='/pentaho/content/cvb/settings'>/pentaho/content/cvb/settings</a></p>
 				</section>
 
-				<section>
+				<!--section>
 					<h2>Pause for tea?</h2>
 					<img width="357" height="267" src="img/kettle.jpg" alt="Up arrow" />
 				</section>
@@ -414,47 +407,46 @@ CVB
 					<p><a href='/pentaho/content/cvb/downloadFile?download=true&paramURI=file:///Users/gundisalwa/Downloads/logos'>
 						Test download
 						</a></p>
-				</section>
+				</section-->
 
 				<section>
-					<h2>Next Steps: Control Panel</h2>
+					<h2>Próximos passos: Painel de controle</h2>
 					<br>
 					<div>
-						<h4>Administrative Features</h4>
+						<h4>Ferramentas de administração</h4>
 						<p>
 							<ul >
-								<li>List existing plugins</li>
-								<li>Detect if the plugins are up to date with the latest version of CPK</li>
-								<li>Allow the creation of new plugins</li>
-								<li>Allow to change plugin metadata</li>
-								<li>List and register new endpoints (UI and code)</li>
+								<li>Listar plugins existentes</li>
+								<li>Detetar se os plugins estão actualizados</li>
+								<li>Permitir criar plugins</li>
+								<li>Listar e registar novos endpoints (UI and code)</li>
 							</ul>
 						</p>
 					</div>
 					<p>
-						<small>(Same <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">deal</a> )</small>
+						<small>(tambem do <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">blog</a> )</small>
 					</p>
 				</section>
 				<section>
-					<h2>Next Steps: Control Panel</h2>
+					<h2>Próximos passos: Painel de controle</h2>
 					<br>
 					<div >
-						<h4>Other goals</h4>
+						<h4>Outros objectivos</h4>
 						<p>
 						<ul >
-							<li>Import UI from existing dashboards in solution</li>	
-							<li>Allow editing dashboards from this UI</li>
-							<li>Submit marketplace metadata to <em>Pentaho</em></li>
-							<li>Generate distribution zip package</li>
+							<li>Importar dashboards da solução</li>	
+							<li>Permitir editar dashboards a partir do painel de controle</li>	
+							<li>Adicionar ao marketplace</li>	
+							<li>Gerar um zip da distribuição</li>	
 						</ul>
 					</div>
 					<p>
-						<small>(Same <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">deal</a> )</small>
+						<small>(tambem do <a href="http://pedroalves-bi.blogspot.pt/2013/02/cpk-community-plugin-kickstarter.html">blog</a> )</small>
 					</p>
 				</section>
 
 				<section>
-					<h2>How to build it?</h2>
+					<h2>Como construir</h2>
 					<br>
 					<img class='fragment fade-in' width="377" height="267" src="img/oroboros.jpg" alt="Up arrow" />
 					<br>
